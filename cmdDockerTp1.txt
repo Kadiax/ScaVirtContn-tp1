@@ -1,0 +1,70 @@
+Documentation : https://putaindecode.io/articles/les-dockerfiles/
+Documentation : https://spring.io/guides/gs/spring-boot-docker/
+Développement – partie 1:
+
+Conteneurisation – partie 1:
+//dockerfile
+
+//ex
+FROM openjdk:13-jdk-alpine
+
+ARG JAR_FILE=target/*.jar
+
+COPY ${JAR_FILE} app.jar
+
+ENTRYPOINT ["java","-jar","/app.jar"]
+
+
+
+
+//build
+docker build --tag productapp:1.0 .
+ou
+docker build -t productapp:1.0 .
+
+//run
+docker run --publish 8000:8080 --detach --name papp productapp:1.0
+ou
+docker run -p 8000:8080 productapp:1.0
+
+//stop
+docker rm --force pa
+
+Conteneurisation – partie 2:
+//Redis
+stop application
+//Récupération de l'image officiel du midleware Redis
+docker pull redis
+
+Développement – partie 2:
+Ajouter un service Redis
+
+start a redis instance
+$ docker run --name some-redis -d redis
+docker run --name some-redis -d redis redis-server --appendonly yes
+
+-> host
+docker network ls
+docker network inspect bridge
+==> ping entre les adresses ip des 2 conteneurs et remplacement du host dans le application.properties par l'adresse ip
+du conteneur redis.
+
+//docker compose
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8080"
+    links:
+      - "db:redis"
+  db:
+    image: "redis:alpine"
+    hostname: redis
+    ports:
+      - "6379:6379"
+
+
+docker-compose build
+
+docker-compose up
