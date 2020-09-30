@@ -57,10 +57,10 @@ services:
     ports:
       - "8000:8080"
     links:
-      - "db:redis"
+      - "db:some-redis"
   db:
     image: "redis:alpine"
-    hostname: redis
+    hostname: some-redis
     ports:
       - "6379:6379"
 
@@ -68,6 +68,10 @@ services:
 docker-compose build
 
 docker-compose up
+
+docker-compose rm
+
+docker-compose ps
 
 
 // link
@@ -90,3 +94,23 @@ TP2
 
 TP: Mise à l’échelle avec les conteneurs et Docker-Compose
 Ajouter des labels dans l’image API créée lors de la séance 1
+
+#Labels
+Labels allow you to do pretty interesting things with your Docker images. Here's a few basic use cases.
+Image labels let you attach text based data to your Docker images. You can then filter your images based on these labels or look up this data in any custom scripts or tools you use.
+
+Here’s a few examples on what you could use image labels for:
+
+Store build information such as git tags and release dates
+Credit images to 1 or more authors / maintainers
+Display license information to quickly determine if it’s MIT, GPLv2, etc.
+Organize your images by any criteria you can think of (there’s no limit)
+One way to set them is by adding the LABEL instruction to your Dockerfile. The format is LABEL <key>=<value> and you can add more than 1.
+
+Dockerfile example of adding 2 labels with 1 LABEL instruction:
+LABEL version="1.0" maintainer="Nick Janetakis <nick.janetakis@gmail.com>"
+
+
+Limit no-limit
+il faut indiquer les limittes sinon l'application elle crache.
+
