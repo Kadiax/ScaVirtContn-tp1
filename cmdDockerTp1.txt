@@ -79,7 +79,7 @@ docker-compose ps
 2° docker build -t productapp:1.0 .
 3° docker run --link some-redis -p 8000:8080 productapp:1.0
 
-
+https://docs.docker.com/compose/reference/overview/
 
 docker rm --force bb
 
@@ -114,3 +114,7 @@ LABEL version="1.0" maintainer="Nick Janetakis <nick.janetakis@gmail.com>"
 Limit no-limit
 il faut indiquer les limittes sinon l'application elle crache.
 
+Il faut se connecter aux conteneurs pour voir les ressources avec net stats ps et comparerer
+docker exec -ti %container_id% /bin/bash
+
+conexion au sein du conteneur
