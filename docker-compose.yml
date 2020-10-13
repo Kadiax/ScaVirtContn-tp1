@@ -10,10 +10,10 @@ services:
       resources:
         limits:
           cpus: '0.25'
-          memory: 166.2m
+          memory: 200m
         reservations:
           cpus: '0.20'
-          memory: 166.1M
+          memory: 100m
   db:
     image: "redis:alpine"
     hostname: some-redis
