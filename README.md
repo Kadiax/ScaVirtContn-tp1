@@ -196,16 +196,18 @@ services:
       - "8000:8080"
     links:
       - "db:some-redis"
-    resources:
+    deploy:
+      resources:
         limits:
-            cpus: '0.25'
-            memory: 166.2MiB
+          cpus: '0.25'
+          memory: 166.2MiB
         reservations:
-            cpus: '0.20'
-            memory: 166.1MiB
+          cpus: '0.20'
+          memory: 166.1MiB
   db:
     image: "redis:alpine"
     hostname: some-redis
     ports:
       - "6379:6379"
+
 ```
