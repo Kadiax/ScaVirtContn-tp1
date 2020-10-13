@@ -1,4 +1,13 @@
 # Commandes Scalabilite Virtualisation Conteneurisation
+## Docker
+Moteur d'execution de conteneurs.
+
+Docker est un logiciel libre permettant 
+de lancer des applications dans des conteneurs logiciels.
+
+## Conteneur
+Logiciel permettant de charger d'autres ressources logicielles dans un environnement cloisonné 
+avec des fonctionnalitées systèmes.
 
 ## Liens utiles
 * https://docs.docker.com/get-started/
@@ -21,7 +30,7 @@
 
 ## TP1
 ### 1) Exemple de Docker File pour une appli springboot:
-
+```Dockerfile
 FROM openjdk:13-jdk-alpine
 
 ARG JAR_FILE=target/*.jar
@@ -29,7 +38,7 @@ ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 
 ENTRYPOINT ["java","-jar","/app.jar"]
-
+```
 
 #### Build une image docker
 docker build --tag productapp:1.0 .
@@ -96,3 +105,107 @@ Commandes docker :
 2) docker build -t productapp:1.0 .
 
 3) docker run --publish 8000:8080 --detach --name prodapp productapp:1.0
+
+
+## TP2
+#### Les labels :
+Les labels permettent d'attacher des données à une image docker, ces donnéees permettrons de filtrer les images.
+
+Quelques exemples d'application:
+* Stocker des information sur le build, des tags git et des datesd de release
+* Accréditer des images à plusieurs auteurs
+* afficher des informations de licenses
+* Organiser ses images docker sur des critères
+
+Exemple de label, ils se construisent sous forme de clé valeur:
+
+* LABEL version="1.0" maintainer="Nick Janetakis <nick.janetakis@gmail.com>"
+* LABEL "com.example.vendor"="ACME Incorporated"
+* LABEL com.example.label-with-value="foo"
+* LABEL version="1.0"
+* LABEL description="This text illustrates \
+  that label-values can span multiple lines."
+  
+#### Docker compose
+Docker compose est un orchestrateur de services, c'est est un outil
+ qui permet de décrire (dans un fichier YAML) et gérer (en ligne de commande) plusieurs conteneurs comme un ensemble de services inter-connectés.
+
+Exemple de fichier docker-compose.yml :
+
+```yml
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8080"
+    links:
+      - "db:some-redis"
+  db:
+    image: "redis:alpine"
+    hostname: some-redis
+    ports:
+      - "6379:6379"
+```
+
+Commandes utile:
+
+* docker-compose build
+
+* docker-compose up
+
+* docker-compose up -d
+
+* docker-compose rm
+
+* docker-compose ps
+
+##### Etude sur la consommation des ressources
+
+Commandes docker pour executer des commandes dans un conteneur :
+
+* docker exec -ti %container_id% /bin/bash
+* docker exec -ti scavirtcontntp1_app_1 pwd 
+* docker exec -ti scavirtcontntp1_app_1 ls 
+
+netstat, pour « network statistics », est une ligne de commande affichant 
+des informations sur les connexions réseau, les tables de routage et 
+un certain nombre de statistiques dont ceux des interfaces, sans
+ oublier les connexions masquées, les membres multicast, et enfin, 
+ les messages netlink. (Source : Wikipedia)
+
+* docker exec -ti scavirtcontntp1_app_1 netstat -a
+
+Oserver la consommation des ressources:
+* docker exec -ti scavirtcontntp1_app_1 top  (q pour sortir)
+
+Commande permettant de visualiser les ressources en temps réelle utilisées par
+les conteneurs:
+
+docker stats
+
+
+##### Gestion des ressources allouées
+Exemple :
+```yml
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8080"
+    links:
+      - "db:some-redis"
+    resources:
+        limits:
+            cpus: '0.25'
+            memory: 166.2MiB
+        reservations:
+            cpus: '0.20'
+            memory: 166.1MiB
+  db:
+    image: "redis:alpine"
+    hostname: some-redis
+    ports:
+      - "6379:6379"
+```
