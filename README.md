@@ -5,6 +5,20 @@
 * https://putaindecode.io/articles/les-dockerfiles/
 * https://spring.io/guides/gs/spring-boot-docker/
 
+## Commandes utiles
+* docker --version
+* docker image ls
+* docker ps --all
+* docker rm --force bb
+* docker network ls
+* docker network inspect bridge
+
+#### Les alias 
+* alias dkps='docker ps -a'
+* alias dki='docker images'
+* alias dkst='docker stop $(docker ps -a -q)'
+* alias dkrm='docker rm $(docker ps -a -q)'
+
 ## TP1
 ### 1) Exemple de Docker File pour une appli springboot:
 
@@ -57,7 +71,7 @@ Tout d'abord les deux conteneurs doivent être stoppés et le properties de l'ap
 
 * spring.redis.port=6379
 
-Commandes dockers pour un link :
+Commandes dockers pour un link après un mvn install pour que le build réusisse:
 
 1) docker run --name some-redis -d redis 
 
