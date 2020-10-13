@@ -1,4 +1,4 @@
-package com.kadiax.episen.tp1.model;
+package com.kadiax.episen.model;
 
 import org.springframework.data.redis.core.RedisHash;
 

@@ -1,8 +1,7 @@
-package com.kadiax.episen.tp1.dao;
+package com.kadiax.episen.dao;
 
-import com.kadiax.episen.tp1.model.Product;
+import com.kadiax.episen.model.Product;
 
-import java.util.List;
 import java.util.Map;
 
 public interface ProductDao  {

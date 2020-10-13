@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.kadiax.episen</groupId>
-    <artifactId>tp1</artifactId>
+    <artifactId>ProductAppDocker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>tp1</name>
+    <name>ProductAppDocker</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

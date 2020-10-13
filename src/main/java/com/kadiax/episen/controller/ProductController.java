@@ -1,11 +1,10 @@
-package com.kadiax.episen.tp1.controller;
+package com.kadiax.episen.controller;
 
-import com.kadiax.episen.tp1.dao.ProductDao;
-import com.kadiax.episen.tp1.model.Product;
+import com.kadiax.episen.dao.ProductDao;
+import com.kadiax.episen.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController

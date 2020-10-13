@@ -1,4 +1,4 @@
-package com.kadiax.episen.tp1;
+package com.kadiax.episen;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

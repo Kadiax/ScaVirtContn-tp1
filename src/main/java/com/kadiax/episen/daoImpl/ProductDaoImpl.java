@@ -1,13 +1,11 @@
-package com.kadiax.episen.tp1.daoImpl;
+package com.kadiax.episen.daoImpl;
 
-import com.kadiax.episen.tp1.dao.ProductDao;
-import com.kadiax.episen.tp1.model.Product;
+import com.kadiax.episen.dao.ProductDao;
+import com.kadiax.episen.model.Product;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 @Repository
