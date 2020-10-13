@@ -156,7 +156,7 @@ Commandes utile:
 
 * docker-compose up -d
 
-* docker-compose rm
+* docker-compose down
 
 * docker-compose ps
 
@@ -211,3 +211,10 @@ services:
       - "6379:6379"
 
 ```
+
+* Réserver = garantir un nombre de ressources
+* Limiter = bloquer au-delà des ressources 
+
+Tester sans le warning pour docker swarn:
+
+docker-compose --compatibility up -d
